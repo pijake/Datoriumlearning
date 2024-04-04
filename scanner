@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        // creates an object of Scanner
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter your name: ");
+        // takes input from the keyboard
+        String name = input.nextLine();
+        // prints the name
+        System.out.println("Hello, " + name);
+
+        System.out.print("Enter your age: ");
+        int age = input.nextInt();
+        // Consume the newline character left in the input buffer
+        input.nextLine(); // Add this line
+        System.out.println("You are " + age + " years old.");
+
+        System.out.print("Enter your location: ");
+        String place = input.nextLine();
+        System.out.println("You live in " + place);
+
+      System.out.print("Enter your favorite food: ");
+      String food = input.nextLine();
+      System.out.println(food + " is very good!");
+
+        input.close();
+    }
+}
