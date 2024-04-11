@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+
+    Scanner scanner = new Scanner(System.in);
+    int number;
+   number = scanner.nextInt(); //waits for us to provide an integer
+    scanner.nextLine(); // waits for us to provide a string until pressed enter
+    
+    
+    System.out.println("This is the provided number:" + number);
+    scanner.close(); //closing the channel
+  }
+ 
+}
+NEXT
+
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+
+    Scanner scanner = new Scanner(System.in); //Opening a channel
+    System.out.println("Hello!");
+   
+    System.out.println("What is your age?");
+    int age; //number = 7 
+    age = scanner.nextInt(); // Waits for us to provide an integer
+    System.out.println("The users age is:" + age);
+
+    //
+
+    scanner.close(); // Closing the channel
+    //scanner.nextLine(); // Waits for us to provide a string until pressed enter 
+  }
+}
+
+NEXT
+
+ import java.util.Scanner;
+
+ public class Main {
+   public static void main(String[] args) {
+
+     Scanner scanner = new Scanner(System.in); //Opening a channel
+     System.out.println("Write a number");
+     int a = scanner.nextInt();
+     System.out.println("Write an another number");
+     int b = scanner.nextInt();
+
+     System.out.println("A sum of A and B is " + (a + b));
+
+     scanner.close(); // Closing the channel
+     //scanner.nextLine(); // Waits for us to provide a string until pressed enter 
+   }
+ }
