@@ -1,0 +1,89 @@
+
+import java.util.Scanner;
+
+import org.junit.experimental.ParallelComputer;
+
+class Main {
+  public static void main(String[] args) {
+      // Create grid
+      char[][] grid= new char[3][3];
+
+      for (char row = 0; row< grid.length; row++) {
+        for (char col = 0; col < grid.length; col++) {
+            grid[row][col] = ' ';
+
+          }
+          }
+      for(char row = 0; row < grid.length; row++){
+          for(char col = 0; col < grid[row].length; col++){
+              System.out.print(grid[row][col] + "|");
+          }
+      System.out.println();
+          if (row < grid.length - 1) {
+              System.out.println("-------");
+                  
+         }
+    }
+     boolean gameOver = false;
+      // Ask the user for a row and column and place '1' in the correct place
+      Scanner scanner = new Scanner(System.in);
+      while (!gameOver) {
+      System.out.println("Enter row (0, 1, or 2): ");
+      int row = scanner.nextInt();
+      System.out.println("Enter column (0, 1, or 2): ");
+      int col = scanner.nextInt();
+      System.out.println();
+      
+               
+     if (row >= 0 && row < 3 && col >= 0 && col < 3 && grid[row][col] == ' ') {
+              grid[row][col] = '1';
+        gameOver = haveWon(grid);
+                if (gameOver) {
+                  System.out.println("Player has won: ");// Place '1' in the specified position
+          } else {
+              System.out.println("Invalid move. Try again.");
+          }
+ 
+          // Print the updated state of the board
+        printBoard(grid);
+     }
+ }
+}
+
+    public static boolean haveWon(char[][] grid){
+             // check the rows and colums 
+             for (int i = 0; i < grid.length; i++) {
+               if ((grid[i][0] == '1' && grid[i][1] == '1' && grid[i][2] == '1') ||
+                   (grid[0][i] == '1' && grid[1][i] == '1' && grid[2][i] == '1')) {
+                 return true;
+    
+               }
+             }
+
+             // diagonal
+             if ((grid[0][0] == '1' && grid[1][1] == '1' && grid[2][2] == '1') || (grid[0][2] == '1' && grid[1][1] == '1' && grid[2][0] == '1')) {
+               return true;
+    
+             }
+                 
+            
+             return false;
+
+  }
+      public static void printBoard(char[][] grid) {
+          
+          for (int row = 0; row < grid.length; row++) {
+              for (int col = 0; col < grid[row].length; col++) {
+                  System.out.print(grid[row][col]);
+                  if (col < grid[row].length - 1) {
+                      System.out.print("|"); 
+                  }
+              }
+              System.out.println();
+              if (row < grid.length - 1) {
+                  System.out.println("-----"); 
+              
+          }
+          }
+      }
+}
