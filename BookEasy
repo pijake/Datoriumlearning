@@ -1,0 +1,67 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    private static ArrayList<String> bookList = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        while (true) {
+            System.out.println("\nWhat to you want to do?");
+            System.out.println("1. Add a book");
+            System.out.println("2. Remove a book");
+            System.out.println("3. Display all books");
+            System.out.println("4. Exit");
+            System.out.print("Please enter your choice: ");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();  // Consume newline
+
+            switch (choice) {
+                case 1:
+                    addBook();
+                    break;
+                case 2:
+                    removeBook();
+                    break;
+                case 3:
+                    displayBooks();
+                    break;
+                case 4:
+                    System.out.println("Thank you! Goodbye");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid choice, please try again.");
+            }
+        }
+    }
+
+    private static void addBook() {
+        System.out.print("Enter the title of the book to add: ");
+        String bookTitle = scanner.nextLine();
+        bookList.add(bookTitle);
+        System.out.println("Book added: " + bookTitle);
+    }
+
+    private static void removeBook() {
+        System.out.print("Enter the title of the book to remove: ");
+        String bookTitle = scanner.nextLine();
+        if (bookList.remove(bookTitle)) {
+            System.out.println("Book removed: " + bookTitle);
+        } else {
+            System.out.println("Book not found: " + bookTitle);
+        }
+    }
+
+    private static void displayBooks() {
+        if (bookList.isEmpty()) {
+            System.out.println("No books in the list.");
+        } else {
+            System.out.println("Books in the list:");
+            for (String book : bookList) {
+                System.out.println(book);
+            }
+        }
+    }
+}
