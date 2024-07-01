@@ -1,0 +1,148 @@
+MAIN
+
+import java.util.Scanner;
+public class Main {
+  private static Scanner scanner = new Scanner(System.in);
+  private static CheeseShop cheeseShop = new CheeseShop();
+  public static void main(String[] args) {
+    while(true){
+    System.out.println("Press 1, to add a cheese");
+    System.out.println("Press 2, to print all cheeses");
+    System.out.println("Press 3, to remove a cheese");
+    System.out.println("Press 4, to exit");
+    int action = scanner.nextInt();
+    if(action == 1){
+      addCheese();
+    }else if(action == 2){
+      printCheeses();
+    }else if(action == 3){
+      removeCheese();
+    }else{
+      break;
+    }
+
+  }
+  
+  }
+  public static void addCheese(){
+    System.out.println("Provide an cheese id");
+    int id = scanner.nextInt();
+    System.out.println("Provide an cheese name");
+    String name = scanner.next();
+    System.out.println("Provide an cheese cost");
+    int cost = scanner.nextInt();
+    var cheese = new Cheese(id, name, cost);
+    cheeseShop.addCheese(cheese);
+
+  }
+  public static void printCheeses(){
+    System.out.println("These are the cheeses in the storage: ");
+    var cheeses = cheeseShop.getCheeses();
+    for (var cheese: cheeses){
+      System.out.println(cheese.getId()+ ". " + cheese.getName() + " " + cheese.getCost() + "€");
+    } 
+  }
+  
+  public static void removeCheese(){
+    System.out.println("Provide a cheese id to remove");
+    int id = scanner.nextInt();
+    cheeseShop.removeCheese(id);
+    
+  
+  }
+}
+
+CHEESESHOP
+
+import java.util.ArrayList;
+public class CheeseShop{
+  private ArrayList<Cheese> cheeses = new ArrayList<Cheese>();
+
+    public ArrayList<Cheese> getCheeses(){
+      return cheeses;
+    }
+
+    public void addCheese(Cheese cheese) {
+      cheeses.add(cheese);
+    }
+
+    public void removeCheese(int id) {
+        boolean removed = cheeses.removeIf(cheese -> cheese.getId() == id);
+        if (removed) {
+            System.out.println("Cheese removed with ID: " + id);
+        } else {
+            System.out.println("No cheese found with ID: " + id);
+        }
+    }
+
+    public void updateCheese(int id, String name, int cost) {
+      for (var cheese : cheeses) {
+        if (cheese.getId() == id) {
+          cheese.setName(name);
+          cheese.setCost(cost);
+          return;
+        
+      }
+    }
+  }
+}
+
+CHEESE
+public class Cheese{
+  private int id;
+  private String name;
+  private int cost;
+
+  public Cheese(int id, String name, int cost){
+    this.id = id;
+    this.name = name;
+    this.cost = cost;
+  }
+
+  public int getId(){
+    return id;
+  }
+
+  public void setName(String name){
+    this.name = name;
+  }
+
+  public String getName(){
+    return name;
+  }
+
+  public void setCost(int cost){
+    // Check whether or not the user is a cashier, and if it is, then allow to change the cost.
+    this.cost = cost;
+  }
+
+  public int getCost(){
+    return cost;
+  }
+}
+
+SHOP
+
+import java.util.ArrayList;
+
+public class Shop {
+
+
+  private ArrayList<Cheese> cart = new ArrayList<Cheese>();
+  public void addToCart(Cheese cheese) {
+   
+    cart.add(cheese);
+  }
+  
+  public void removeFromCart(Cheese cheese) {
+      cart.remove(cheese);
+  }
+
+  public int checkout() { // get the total cost
+    int sum = 0;
+    for (var cheese : cart) {
+      sum += cheese.getCost();
+    }
+    return sum;
+  }
+}
